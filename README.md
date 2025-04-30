@@ -1,31 +1,31 @@
 # Cross-Architecture Knowledge Distillation
-Can We Induce Desirable Properties into Models via Cross-Architecture Knowledge Distillation?
+Can We **Induce Desirable Properties** into Models via Cross-Architecture Knowledge Distillation?
 Authors: Muhammad Huraira Anwer, Adeen Ali Khan – LUMS, Pakistan
 
 ## Overview
-In this project, we explored whether key inductive biases (like shape bias, locality, and permutation invariance) can be transferred across different neural network architectures using knowledge distillation (KD).
+In this project, we explored whether key inductive biases (like **shape bias, locality, and permutation invariance**) can be transferred across different neural network architectures using knowledge distillation (KD).
 
-More specifically, we focused on distilling attention-based Vision Transformers (ViT) into convolutional models (CNNs) and vice versa—something that's rarely studied. Our goal was to see not just if performance transfers, but if model behavior and biases do too.
+More specifically, we focused on distilling attention-based Vision Transformers (**ViT**) into convolutional models (**CNNs**) and vice versa—something that's rarely studied. Our goal was to see not just if performance transfers, but if model behavior and biases do too.
 
 ## Objectives
 We structured our work around three guiding questions:
 
-Can architectural biases (e.g., shape, texture, locality) be transferred through KD across ViTs and CNNs?
+Can **architectural biases** (e.g., shape, texture, locality) be **transferred** through KD across ViTs and CNNs?
 
-Do transformer properties like permutation invariance survive in student CNNs?
+Do **transformer properties** like permutation invariance **survive** in student CNNs?
 
-How do various distillation methods affect the efficiency and behavior of students under noisy and perturbed inputs?
+How do various **distillation methods** affect the **efficiency** and behavior of students under noisy and perturbed inputs?
 
 ## Contributions
 We created custom test datasets with stylized textures, scrambled patches, and added noise to stress-test learned biases.
 
 We designed two major pipelines:
 
-CNN ➡️ ViT Distillation using methods like CSKD and VLFKD.
+**CNN ➡️ ViT** Distillation using methods like Cumulative Spatial Knowledge Distillation (**CSKD**) and Visual Linguistic Feature Knowledge Distillation (**VLFKD**).
 
-ViT ➡️ CNN Distillation using methods like CRD, SSKD, and CAPD.
+**ViT ➡️ CNN** Distillation using methods like Contrastive Representation Distillation (**CRD**), Self Supervised Knowledge Distillation (**SSKD**), and Cross Architecture Projection Distillation (**CAPD**).
 
-To control compute costs, all models were trained on CIFAR-10 under limited epochs (≤ 5).
+To control compute costs, all models were trained on **CIFAR-10** under limited epochs (≤ **5**).
 
 We evaluated each model on accuracy as well as bias metrics that quantify model reliance on texture, shape, or global structure.
 
@@ -38,14 +38,14 @@ We explicitly limited training epochs to simulate low-compute deployment setting
 
 ## Highlights & Insights
 ### CNN ➡️ ViT
-CSKD emerged as the most efficient and effective method, excelling in transferring texture bias and noise robustness.
+**CSKD** emerged as the most efficient and effective method, excelling in transferring texture bias and noise robustness.
 
 However, ViTs struggled to inherit CNN's locality bias, and improvements over the independent baseline were mild.
 
 Suggests CNNs may be inherently less effective as teachers for behavior-focused distillation.
 
 ### ViT ➡️ CNN
-CRD and SSKD were both effective at instilling shape bias and permutation invariance into student CNNs.
+**CRD** and **SSKD** were both effective at instilling shape bias and permutation invariance into student CNNs.
 
 The improvements were significant compared to the independent baseline—highlighting the power of ViTs as behavior-rich teachers.
 
